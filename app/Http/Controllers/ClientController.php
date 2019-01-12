@@ -77,7 +77,7 @@ class ClientController extends Controller
         $params = [
             'index' => 'megacorp',
             'type' => 'employee',
-            
+
         ];
     }
 }
