@@ -77,7 +77,31 @@ class ClientController extends Controller
         $params = [
             'index' => 'megacorp',
             'type' => 'employee',
-
+            'body' => [
+                'employee' => [
+                    '_source' => [
+                        'enabled' => true
+                    ],
+                    'properties' => [
+                        "first_name" => ['type' => 'string'],
+                        "last_name" => ['type' => 'string'],
+                        "age" => ['type' => 'long'],
+                        "about" => ['type' => 'string'],
+                        "interests" => ['type' => 'array'],
+                    ]
+                ]
+            ]
         ];
+
+        $response = $this->elasticsearch->indices()->putMapping($params);
+        dump($response);
+
+        //Get a mapping
+        $params = [
+            'index' => 'megacorp',
+            'type' => 'employee'
+        ];
+        $response = $this->elasticsearch->indices()->getMapping($params);
+        dump($response);
     }
 }
